@@ -4,6 +4,6 @@ package classes;
  *
  * @author Tomáš Honner
  */
-public interface DB_Interface {
+public enum Type { ADMIN, TECHNICIAN, CUSTOMER, INACTIVE, DELETED;
     
 }
