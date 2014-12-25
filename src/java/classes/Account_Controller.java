@@ -9,11 +9,13 @@ import mock_classes.Accounts_Hibernate;
  */
 public class Account_Controller {
     
-    private Accounts_Hibernate ah = new Accounts_Hibernate();
+    private List<Account> listOfAccounts;
+    private Accounts_Hibernate ah;
     
     public Account_Controller()
     {
-        
+        this.ah = new Accounts_Hibernate();
+        this.listOfAccounts = ah.loadAccountsList();
     }
     
     public void createAccount(int id, String email, String password, Type accountType)
@@ -25,6 +27,18 @@ public class Account_Controller {
     public void deleteAccount(int id)
     {
         ah.deleteAccount(id);
+    }
+    
+    public Account getAccount(String email)
+    {
+        for(Account a : this.listOfAccounts)
+        {
+            if(email.equalsIgnoreCase(a.getEmail()))
+            {
+                return a;
+            }
+        }
+        return null;
     }
     
     public List<Account> getListOfAccounts()

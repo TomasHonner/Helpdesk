@@ -17,6 +17,8 @@ public class Login_Bean {
     private String username;
     private String password;
     
+    private UserBean user;
+    
     Authentization_Filter af;
     
     public Login_Bean() {
@@ -28,6 +30,7 @@ public class Login_Bean {
         this.af.verifyAccount();
         if(this.af.isValidationResult())
         {
+            this.user.setUser(af.getUser());
             return "dashbord";
         }
         else

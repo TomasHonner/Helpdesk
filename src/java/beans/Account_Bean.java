@@ -1,5 +1,7 @@
 package beans;
 
+import classes.Account;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
@@ -13,6 +15,7 @@ import javax.inject.Named;
 @SessionScoped
 public class Account_Bean {
 
+    private Account user;
     
     public Account_Bean() {
     }

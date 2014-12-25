@@ -1,6 +1,9 @@
 package beans;
 
 import classes.Ticket_Controller;
+import classes.Account;
+import classes.Type;
+
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -15,8 +18,8 @@ import javax.inject.Named;
 @SessionScoped
 public class Dashbord_Bean {
 
-    private String user;
-    private int privileges; // 1- admin, 2- technik 3- zakaznik
+    private Account user;
+    private Type privileges;
     
     private Date datetime;
     private String customer;
@@ -28,19 +31,19 @@ public class Dashbord_Bean {
     
     private Ticket_Controller tc;
     
-    public Dashbord_Bean(String user, int priv) {
+    public Dashbord_Bean(Account user, int priv) {
         this.user = user;
-        this.privileges = priv;
+        this.privileges = user.getAccountType();
         this.tc = new Ticket_Controller(); 
     }
     
     
 
-    public String getUser() {
+    public Account getUser() {
         return user;
     }
 
-    public int getPrivileges() {
+    public Type getPrivileges() {
         return privileges;
     }
 
