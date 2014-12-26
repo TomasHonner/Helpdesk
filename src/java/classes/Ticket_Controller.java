@@ -11,25 +11,66 @@ import java.util.List;
  */
 public class Ticket_Controller {
     
+    private List<Ticket> ticketsToShow;
+    
     private Tickets_Hibernate tickets;
     private Accounts_Hibernate accounts;
     //private List<Tickets_Hibernate> listOfTickets;
     
     public Ticket_Controller()
     {
-        
+        this.ticketsToShow = null;
+    }
+    
+    public void toShow(int i, Account a)
+    {
+        switch(i)
+        {
+            case 1 : this.ticketsToShow = this.getListOfAllTickets(); break;
+            case 2 : this.ticketsToShow = this.getListOfTicketsByCustomerAccount(a); break;
+            case 3 : this.ticketsToShow = this.getListOfTicketsByTechnicianAccount(a); break;
+            case 4 : this.ticketsToShow = this.getListOfSolvingTicketsByTechnicianAccount(a); break;
+        }
+    }
+    
+    public List<Ticket> loadTickets(Type t, Account a)
+    {
+        List<Ticket> l = null;
+        switch(t)
+        {
+            case CUSTOMER : l = this.getListOfTicketsByCustomerAccount(a);
+            case TECHNICIAN : l = this.getListOfTicketsByTechnicianAccount(a);
+        }
+        return l;
+    }
+    
+    public List<Ticket> getListOfAllTickets()
+    {
+        List<Ticket> l = tickets.loadAllTickets();
+        return l;
     }
  
-    // toto NENI id ticketu ale id zakaznika nebo technika
-    public List<Ticket> getListOfTicketsByID(int id)
+    public List<Ticket> getListOfTicketsByCustomerAccount(Account customer)
     {
-       List<Ticket> l = tickets.loadListOfTicketsByCostumer(id);
+       List<Ticket> l = tickets.loadListOfTicketsByCostumer(customer);
+       return l;
+    }
+    
+    public List<Ticket> getListOfTicketsByTechnicianAccount(Account technician)
+    {
+       List<Ticket> l = tickets.loadListOfTicketsByCostumer(technician);
+       return l;
+    }
+    
+    public List<Ticket> getListOfSolvingTicketsByTechnicianAccount(Account technician)
+    {
+       List<Ticket> l = tickets.loadListOfTicketsByCostumer(technician);
        return l;
     }
      
-    public void createTicket(Account customer, Date date,String cMessage, Category category)
+    public void createTicket(Account customer, String cMessage, Category category)
     {
-        Ticket t = new Ticket(customer, date, category, cMessage, Status.NEW);
+        Ticket t = new Ticket(customer, new Date(), category, cMessage, Status.NEW);
         List<Account> l = accounts.getTechnicianAccounts();
         for(Account a : l)
         {
@@ -57,9 +98,23 @@ public class Ticket_Controller {
         return t;
     }
     
-    public Ticket changeStatus(Ticket t, Status status)
+    // dopsat
+    public Ticket updateTicket(Ticket t)
+    {
+        return new Ticket();
+    }
+    
+    private Ticket changeStatus(Ticket t, Status status)
     {
         t.setStatus(status);
         return t;
+    }
+
+    public List<Ticket> getTicketsToShow() {
+        return ticketsToShow;
+    }
+
+    public void setTicketsToShow(List<Ticket> ticketsToShow) {
+        this.ticketsToShow = ticketsToShow;
     }
 }

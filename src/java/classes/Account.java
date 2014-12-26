@@ -1,7 +1,5 @@
 package classes;
 
-import java.util.List;
-
 /**
  *
  * @author Tomáš Honner

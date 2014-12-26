@@ -4,6 +4,6 @@ package classes;
  *
  * @author Tomáš Honner
  */
-public enum Category {
+public enum Category { HARDWARE, SOFTWARE, OTHER_PRODUCTS;
     
 }

@@ -1,6 +1,7 @@
 package mock_classes;
 
 import classes.Ticket;
+import classes.Account;
 import java.util.List;
 /**
  *
@@ -15,19 +16,25 @@ public class Tickets_Hibernate {
         
     }
     
-    public List<Ticket> loadTicketsList()
+    public List<Ticket> loadAllTickets()
     {
         List<Ticket> l = null;
         return l;
     }
     
-    public List<Ticket> loadListOfTicketsByCostumer(int customerID)
+    public List<Ticket> loadListOfTicketsByCostumer(Account customer)
     {
         List<Ticket> l = null;
         return l;
     }
     
-    public List<Ticket> loadListOfTicketsByTechnician(int technicianID)
+    public List<Ticket> loadListOfTicketsByTechnician(Account technician)
+    {
+        List<Ticket> l = null;
+        return l;
+    }
+    
+    public List<Ticket> loadListOfSolvingTicketsByTechnician(Account technician)
     {
         List<Ticket> l = null;
         return l;
@@ -38,7 +45,7 @@ public class Tickets_Hibernate {
         
     }
     
-    public void addTicketToList(Ticket t)
+    public void addTicket(Ticket t)
     {
         
     }

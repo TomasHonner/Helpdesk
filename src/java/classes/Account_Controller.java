@@ -18,9 +18,18 @@ public class Account_Controller {
         this.listOfAccounts = ah.loadAccountsList();
     }
     
-    public void createAccount(int id, String email, String password, Type accountType)
+    public void createAccount( String email, String password, Type accountType, Category category)
     {
-        Account a = new Account(id, email, password, accountType);
+        // udelat id
+        // new Account(id, email, password, accountType, category)
+        Account a = new Account();
+        a.setEmail(email);
+        a.setPassword(password);
+        a.setAccountType(accountType);
+        if(category != null)
+        {
+            a.setCategoryforTecnician(category);
+        }
         ah.addAccount(a);
     }
     

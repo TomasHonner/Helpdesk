@@ -10,28 +10,34 @@
        <div>
             <f:view>
                 <h:form>
-                    <h:dataTable>
+                    <h:dataTable value="#{DashbordBean.tickets}" var="t">
                         <h:column>
                             <f:facet name="header">ID</f:facet>
+                            #{t.ticketID}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Customer</f:facet>
-                            <!--  list   -->
+                            #{t.customer.email}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Date and time</f:facet>
+                            #{t.datetime}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Category</f:facet>
+                            #{t.category}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Solving technician</f:facet>
+                            #{t.technician.email}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Customer message</f:facet>
+                            #{t.customerText}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Technician messege</f:facet>
+                            #{t.technicianText}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Status</f:facet>
