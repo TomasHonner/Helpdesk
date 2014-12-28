@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Create Account</title>
     </h:head>
     <h:body>
         <h:form>
@@ -26,7 +26,7 @@
                 <f:selectItem value="#{AccountBean.technicianCategory = OTHER_PRODUCTS}"></f:selectItem>
             </h:selectOneMenu>
             </c:if>
-            <h:commandButton>Save</h:commandButton>
+            <h:commandButton value="Save" action="#{AccountBean.saveAccount()}"></h:commandButton>
         </h:form>
     </h:body>
 </html>

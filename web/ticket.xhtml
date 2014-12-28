@@ -1,12 +1,37 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Ticket</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h:form>
+            <table>
+                <tr>
+                    <td><h:outputLabel>Customer messege</h:outputLabel>
+                        <h:outputLabel>#{DashbordBean.getsTicket.customerText}</h:outputLabel>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputLabel>Technician text</h:outputLabel>
+                        <h:inputTextarea value="#{DashbordBean.getsTicket.technicianText}"></h:inputTextarea>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- enum status do selectu -->
+                    
+                </tr>
+                <tr>
+                    <td>
+                        <h:commandButton value="Save" action="#{DashbordBean.saveSolvedTicket()}"></h:commandButton>
+                    </td>
+                </tr>
+            </table>
+            
+        </h:form>
     </h:body>
 </html>
 

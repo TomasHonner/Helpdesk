@@ -30,12 +30,14 @@ public class Account_Bean {
     
     public Account_Bean() {
         this.ac = new Account_Controller();
+        this.accounts = ac.getListOfAccounts();
     }
     
-    public void saveAccount()
+    public String saveAccount()
     {
         // napsat nejakou ochranu
         ac.createAccount(this.username, this.password, this.accountType, this.technicianCategory);
+        return "accounts";
         
     }
 

@@ -11,10 +11,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-/**
- *
- * @author Tomáš Honner
- */
 public class Email_Sender {
     
     public static void Send(final String username, final String password, String recipientEmail, String title, String message) throws AddressException, MessagingException {
@@ -46,22 +42,12 @@ public class Email_Sender {
         props.setProperty("mail.smtp.socketFactory.port", "465");
         props.setProperty("mail.smtps.auth", "true");
 
-        /*
-        If set to false, the QUIT command is sent and the connection is immediately closed. If set 
-        to true (the default), causes the transport to wait for the response to the QUIT command.
-
-        ref :   http://java.sun.com/products/javamail/javadocs/com/sun/mail/smtp/package-summary.html
-                http://forum.java.sun.com/thread.jspa?threadID=5205249
-                smtpsend.java - demo program from javamail
-        */
         props.put("mail.smtps.quitwait", "false");
 
         Session session = Session.getInstance(props, null);
 
-        // -- Create a new message --
         final MimeMessage msg = new MimeMessage(session);
 
-        // -- Set the FROM and TO fields --
         msg.setFrom(new InternetAddress(username + "@gmail.com"));
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail, false));
 

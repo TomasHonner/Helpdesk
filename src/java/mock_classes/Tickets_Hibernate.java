@@ -50,4 +50,9 @@ public class Tickets_Hibernate {
         
     }
     
+    public void updateTicket(int id)
+    {
+        
+    }
+    
 }

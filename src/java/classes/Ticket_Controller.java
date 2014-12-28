@@ -3,6 +3,7 @@ package classes;
 import mock_classes.Tickets_Hibernate;
 import mock_classes.Accounts_Hibernate;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,11 +16,14 @@ public class Ticket_Controller {
     
     private Tickets_Hibernate tickets;
     private Accounts_Hibernate accounts;
+    private List<Account> technicians;
     //private List<Tickets_Hibernate> listOfTickets;
     
     public Ticket_Controller()
     {
         this.ticketsToShow = null;
+        this.accounts = new Accounts_Hibernate();
+        this.technicians = this.accounts.getTechnicianAccounts();
     }
     
     public void toShow(int i, Account a)
@@ -71,15 +75,50 @@ public class Ticket_Controller {
     public void createTicket(Account customer, String cMessage, Category category)
     {
         Ticket t = new Ticket(customer, new Date(), category, cMessage, Status.NEW);
-        List<Account> l = accounts.getTechnicianAccounts();
-        for(Account a : l)
+        t.setTechnician(assignLogic(t));
+    }
+    
+    public Account assignLogic(Ticket t)
+    {
+        Account a = null;
+        Status s = t.getStatus();
+        switch(s)
         {
-            if(a.getCategoryforTecnician() == category)
+            case NEW : a = assignTechnicianByCategory(t.getCategory()); break;
+            case REASSIGNING : a = assignTicketReassign(t.getListOfTechnicians()); break;
+        }
+        return a;
+    }
+    
+    private Account assignTechnicianByCategory(Category c)
+    {
+        for(Account a : this.technicians)
+        {
+            if(a.getCategoryforTecnician() == c)
             {
-                t.addTechnician(a, Status.SOLVING);
+                return a;
             }
         }
-        
+        return null;
+    }
+    
+    private Account assignTicketReassign(HashMap<Account, Status> t)
+    {
+        Account a = null;
+        int i =1;
+        while(i==1)
+        {
+            for(Account aa : this.technicians)
+            {
+                if(t.get(aa) == null)
+                {
+                    a = aa;
+                    i = 0;
+                }
+                else continue;
+            }
+        }
+        return a;
     }
     
     public Ticket changeCustomerText(Ticket t, String text)
@@ -98,10 +137,9 @@ public class Ticket_Controller {
         return t;
     }
     
-    // dopsat
-    public Ticket updateTicket(Ticket t)
+    public void updateTicket(Ticket t)
     {
-        return new Ticket();
+        this.tickets.updateTicket(t.getTicketID());
     }
     
     private Ticket changeStatus(Ticket t, Status status)

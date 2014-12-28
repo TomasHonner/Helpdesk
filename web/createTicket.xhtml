@@ -3,10 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Create Ticket</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h:form>
+            <h:outputLabel>Your message</h:outputLabel>
+            <h:inputTextarea value="#{DashbordBean.ntMessage}"></h:inputTextarea>
+            <!-- vypsat enum kategotie do selectu -->
+            
+            <h:commandButton value="Create" action="#{DashbordBean.createFilledTicket()}"></h:commandButton>
+        </h:form>
     </h:body>
 </html>
 
